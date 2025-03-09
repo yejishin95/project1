@@ -21,6 +21,17 @@ public class BoardDao {
 		
 		jdbcTemplate.update(sql, data);
 	}
+
+	
+	public boolean update(BoardDto dto) {
+	    String sql = "UPDATE board SET board_title=?, board_content=?, board_writer=? WHERE board_no=?";
+	    Object[] data = {
+	            dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter(), dto.getBoardNo()
+	    };
+	    
+	    return jdbcTemplate.update(sql, data) > 0;
+	}
+
 	
 	
 }

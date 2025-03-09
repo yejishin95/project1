@@ -20,5 +20,16 @@ public class BoardController {
 		return "게시글 작성 완료!";
 	}
 	
+	@RequestMapping("/update")
+	public String update(@ModelAttribute BoardDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {
+			return "게시글 업데이트 완료!";			
+		}else {
+			return "해당하는 게시글이 없습니다";
+		}
+		
+	}
+	
 	
 }
