@@ -1,10 +1,13 @@
 package com.yeji.spring05.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.yeji.spring05.dto.PocketmonDto;
+import com.yeji.spring05.mapper.PocketmonMapper;
 
 
 @Repository
@@ -12,6 +15,9 @@ public class PocketmonDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private PocketmonMapper mapper;
 	
 	public void insert(PocketmonDto dto) {
 		String sql = "insert into pocketmon(no,name,type) "
@@ -34,6 +40,12 @@ public class PocketmonDao {
 		
 		return jdbcTemplate.update(sql, data)>0;
 	}
+	
+	public List<PocketmonDto> selectList(){
+		String sql ="select * from pocketmon order by no asc";
+		return jdbcTemplate.query(sql, mapper);
+	}
+	
 
 
 }

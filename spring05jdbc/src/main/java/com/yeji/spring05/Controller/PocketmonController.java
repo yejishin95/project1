@@ -1,5 +1,7 @@
 package com.yeji.spring05.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,4 +46,16 @@ public class PocketmonController {
 			return "삭제 대상 포켓몬 정보 없습니다";
 		}
 	}
+	
+	@RequestMapping("/list")
+	public String list() {
+		List<PocketmonDto> list = dao.selectList();
+		StringBuffer buffer = new StringBuffer();
+		for(PocketmonDto dto : list) {
+			buffer.append(dto);
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
 }
+
