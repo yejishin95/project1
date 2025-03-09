@@ -1,12 +1,12 @@
-package com.yeji.spring05.controller;
+package com.yeji.spring06.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yeji.spring05.dao.BoardDao;
-import com.yeji.spring05.dto.BoardDto;
+import com.yeji.spring06.dao.BoardDao;
+import com.yeji.spring06.dto.BoardDto;
 
 @RestController
 public class BoardController {

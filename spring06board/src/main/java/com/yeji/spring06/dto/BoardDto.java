@@ -1,4 +1,4 @@
-package com.yeji.spring05.dto;
+package com.yeji.spring06.dto;
 
 public class BoardDto {
 

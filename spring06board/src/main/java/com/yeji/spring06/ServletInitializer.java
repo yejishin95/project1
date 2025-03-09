@@ -1,4 +1,4 @@
-package com.yeji.spring05;
+package com.yeji.spring06;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Spring05boardApplication.class);
+		return application.sources(Spring06boardApplication.class);
 	}
 
 }

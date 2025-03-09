@@ -1,10 +1,10 @@
-package com.yeji.spring05.dao;
+package com.yeji.spring06.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.yeji.spring05.dto.BoardDto;
+import com.yeji.spring06.dto.BoardDto;
 
 @Repository
 public class BoardDao {
