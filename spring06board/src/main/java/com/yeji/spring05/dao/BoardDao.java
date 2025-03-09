@@ -1,0 +1,26 @@
+package com.yeji.spring05.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.yeji.spring05.dto.BoardDto;
+
+@Repository
+public class BoardDao {
+
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
+	public void insert(BoardDto dto){
+		String sql = "insert into board(board_no, board_title, board_content, board_writer, board_readcount) "
+				+ "values(board_seq.nextval,?,?,?,0)";
+		Object[] data = {
+			dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter()
+		};
+		
+		jdbcTemplate.update(sql, data);
+	}
+	
+	
+}
