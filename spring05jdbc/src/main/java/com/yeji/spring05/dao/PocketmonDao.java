@@ -16,16 +16,23 @@ public class PocketmonDao {
 	public void insert(PocketmonDto dto) {
 		String sql = "insert into pocketmon(no,name,type) "
 				+ "values(?,?,?)";
-		Object data[] = {dto.getNo(), dto.getName(), dto.getType()};
+		Object[] data = {dto.getNo(), dto.getName(), dto.getType()};
 		
 		jdbcTemplate.update(sql, data);
 	}
 
 	public boolean update(PocketmonDto dto) {
 		String sql = "update pocketmon set name = ?, type = ? where no = ?";
-		Object data[] = {dto.getName(), dto.getType(), dto.getNo()};
+		Object[] data = {dto.getName(), dto.getType(), dto.getNo()};
 		//jdbcTemplate.update(sql, data);
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	public boolean delete(int no) {
+		String sql ="delete pocketmon where no=?";
+		Object[] data = {no};
+		
+		return jdbcTemplate.update(sql, data)>0;
 	}
 
 

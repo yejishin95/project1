@@ -3,6 +3,7 @@ package com.yeji.spring05.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yeji.spring05.dao.PocketmonDao;
@@ -22,7 +23,7 @@ public class PocketmonController {
 		return "포켓몬 등록 완료!";
 	}
 	
-	@RequestMapping("update")
+	@RequestMapping("/update")
 	public String update(
 			@ModelAttribute PocketmonDto dto) {
 		boolean result = dao.update(dto);
@@ -30,6 +31,17 @@ public class PocketmonController {
 			return "포켓몬 업데이트 완료!";
 		}else {
 			return "해당정보는 존재하지 않습니다";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(
+			@RequestParam int no) {
+		boolean result = dao.delete(no);
+		if(result) {
+			return "포켓몬 삭제!";
+		}else {
+			return "삭제 대상 포켓몬 정보 없습니다";
 		}
 	}
 }
