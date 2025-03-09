@@ -21,4 +21,15 @@ public class PocketmonController {
 		dao.insert(dto);
 		return "포켓몬 등록 완료!";
 	}
+	
+	@RequestMapping("update")
+	public String update(
+			@ModelAttribute PocketmonDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {
+			return "포켓몬 업데이트 완료!";
+		}else {
+			return "해당정보는 존재하지 않습니다";
+		}
+	}
 }
