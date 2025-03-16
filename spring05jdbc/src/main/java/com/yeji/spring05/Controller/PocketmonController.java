@@ -57,5 +57,16 @@ public class PocketmonController {
 		}
 		return buffer.toString();
 	}
+	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int no) {
+		PocketmonDto dto = dao.selectOne(no);
+		if(dto == null) {
+			return "존재하지 않는 포켓몬스터";
+		}
+		else {
+			return dto.toString();
+		}
+	}
 }
 

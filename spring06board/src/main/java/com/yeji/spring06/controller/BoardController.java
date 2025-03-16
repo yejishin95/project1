@@ -1,5 +1,7 @@
 package com.yeji.spring06.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +41,50 @@ public class BoardController {
 			return "게시글 삭제 완료";
 		}else {
 			return "해당 게시글 존재하지 않습니다";
+		}
+	}
+	
+	@RequestMapping("/list")
+	public String list(){
+		List<BoardDto> list = dao.selectList();
+		StringBuffer buffer = new StringBuffer();
+		for(BoardDto dto:list) {
+			buffer.append("[");
+			buffer.append(dto.getBoardNo());
+			buffer.append("]");
+			buffer.append(" ");
+			buffer.append(dto.getBoardTitle());
+			buffer.append(" - ");
+			buffer.append(dto.getBoardWriter());
+			buffer.append(" (조회수 : ");
+			buffer.append(dto.getBoardReadcount());
+			buffer.append(")\n");
+		}
+		return buffer.toString();
+	}
+	
+	@RequestMapping("/list2")
+	public String list2() {
+		List<BoardDto> list = dao.detail();
+		StringBuffer buffer = new StringBuffer();
+		for(BoardDto dto : list) {
+			buffer.append(dto.getBoardNo());
+			buffer.append(dto.getBoardTitle());
+			buffer.append(dto.getBoardContent());
+			buffer.append(dto.getBoardWriter());
+			buffer.append(dto.getBoardReadcount());
+		}
+		return buffer.toString();
+	}
+	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int boardNo) {
+		BoardDto dto = dao.selectOne(boardNo);
+		if(dto == null) {
+			return "존재하지 않는 게시글";
+		}
+		else {
+			return dto.toString();
 		}
 	}
 	
